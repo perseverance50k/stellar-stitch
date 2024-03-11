@@ -10,7 +10,7 @@ export default function App() {
         />
         <Button title="Add star" />
       </View>
-      <View>
+      <View style={styles.starsContainer}>
         <Text>List of stars...</Text>
       </View>
     </View>
@@ -19,17 +19,27 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
+    flex: 1,
     padding: 50,
+    paddingHorizontal: 16,
   },
   inputContainer: {
+    flex: 1,
     flexDirection: "row",
     justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 24,
+    borderBottomWidth: 1,
+    borderBottomColor: "#cccccc",
   },
   textInput: {
-    borderWidth: "1px",
+    borderWidth: 1,
     borderColor: "#cccccc",
-    width: "80%",
+    width: "70%",
     marginRight: 8,
     padding: 8,
+  },
+  starsContainer: {
+    flex: 7,
   },
 });
