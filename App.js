@@ -3,13 +3,14 @@ import { StyleSheet, Text, View, Button, TextInput } from "react-native";
 
 export default function App() {
   const [starInput, setStarInput] = useState("");
+  const [stars, setStars] = useState([]);
 
   const starInputChangeHandler = (enteredText) => {
     setStarInput(enteredText);
   };
 
   const addStarBtnPressHandler = () => {
-    console.log("Star added: ", starInput);
+    setStars((currentStars) => [...currentStars, starInput]);
   };
 
   return (
@@ -23,7 +24,9 @@ export default function App() {
         <Button title="Add star" onPress={addStarBtnPressHandler} />
       </View>
       <View style={styles.starsContainer}>
-        <Text>List of stars...</Text>
+        {stars.map((star, idx) => (
+          <Text key={idx}>{star}</Text>
+        ))}
       </View>
     </View>
   );
@@ -52,6 +55,6 @@ const styles = StyleSheet.create({
     padding: 8,
   },
   starsContainer: {
-    flex: 7,
+    flex: 5,
   },
 });
