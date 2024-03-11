@@ -1,6 +1,6 @@
 import { View, TextInput, Button, StyleSheet } from "react-native";
 
-export const StarInput = ({ onInputChange, onButtonPress }) => {
+export const StarInput = ({ value, onInputChange, onButtonPress }) => {
   return (
     <View style={styles.inputContainer}>
       <TextInput
@@ -8,6 +8,7 @@ export const StarInput = ({ onInputChange, onButtonPress }) => {
         placeholder="Add a name of the star"
         onChangeText={onInputChange}
         autoCapitalize="none"
+        value={value}
       />
       <Button title="Add star" color="#f0b800" onPress={onButtonPress} />
     </View>
@@ -20,7 +21,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    marginBottom: 24,
+    marginBottom: 12,
     borderBottomWidth: 1,
     borderBottomColor: "#cccccc",
   },

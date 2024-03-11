@@ -13,17 +13,28 @@ export default function App() {
 
   const addStarBtnPressHandler = () => {
     if (starInput.length === 0) return;
-    setStars((currentStars) => [...currentStars, starInput]);
+    setStars((currentStars) => [
+      ...currentStars,
+      { value: starInput, id: stars.length - 1 },
+    ]);
+    setStarInput("");
+  };
+
+  const starItemPressHandler = (id) => {
+    setStars((currentStars) => {
+      return currentStars.filter((star) => star.id !== id);
+    });
   };
 
   return (
     <View style={styles.container}>
       <StarInput
+        value={starInput}
         onInputChange={starInputChangeHandler}
         onButtonPress={addStarBtnPressHandler}
       />
       <View style={styles.starsContainer}>
-        <StarList stars={stars} />
+        <StarList stars={stars} onItemPress={starItemPressHandler} />
       </View>
     </View>
   );

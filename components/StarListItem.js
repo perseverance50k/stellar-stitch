@@ -1,10 +1,16 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, Pressable } from "react-native";
 
-export const StarListItem = ({ item }) => {
+export const StarListItem = ({ item, onItemPress }) => {
   return (
-    <View style={styles.starsListItem}>
-      <Text style={styles.starsListItemText}>{item}</Text>
-    </View>
+    <Pressable
+      onPress={() => {
+        onItemPress(item.id);
+      }}
+    >
+      <View style={styles.starsListItem}>
+        <Text style={styles.starsListItemText}>{item.value}</Text>
+      </View>
+    </Pressable>
   );
 };
 
