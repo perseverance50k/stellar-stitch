@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Button,
+  TextInput,
+  ScrollView,
+} from "react-native";
 
 export default function App() {
   const [starInput, setStarInput] = useState("");
@@ -29,11 +36,13 @@ export default function App() {
         />
       </View>
       <View style={styles.starsContainer}>
-        {stars.map((star, idx) => (
-          <View style={styles.starsListItem} key={idx}>
-            <Text style={styles.starsListItemText}>{star}</Text>
-          </View>
-        ))}
+        <ScrollView>
+          {stars.map((star, idx) => (
+            <View style={styles.starsListItem} key={idx}>
+              <Text style={styles.starsListItemText}>{star}</Text>
+            </View>
+          ))}
+        </ScrollView>
       </View>
     </View>
   );
