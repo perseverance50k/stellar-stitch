@@ -6,6 +6,7 @@ import {
   Button,
   TextInput,
   ScrollView,
+  FlatList,
 } from "react-native";
 
 export default function App() {
@@ -28,6 +29,7 @@ export default function App() {
           style={styles.textInput}
           placeholder="Add a name of the star"
           onChangeText={starInputChangeHandler}
+          autoCapitalize="none"
         />
         <Button
           title="Add star"
@@ -36,13 +38,17 @@ export default function App() {
         />
       </View>
       <View style={styles.starsContainer}>
-        <ScrollView>
-          {stars.map((star, idx) => (
-            <View style={styles.starsListItem} key={idx}>
-              <Text style={styles.starsListItemText}>{star}</Text>
-            </View>
-          ))}
-        </ScrollView>
+        <FlatList
+          data={stars}
+          renderItem={(itemData) => {
+            const { item } = itemData;
+            return (
+              <View style={styles.starsListItem}>
+                <Text style={styles.starsListItemText}>{item}</Text>
+              </View>
+            );
+          }}
+        />
       </View>
     </View>
   );
