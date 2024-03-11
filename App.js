@@ -1,11 +1,12 @@
 import { useState } from "react";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Button } from "react-native";
 import { StarInput } from "./components/StarInput";
 import { StarList } from "./components/StarList";
 
 export default function App() {
   const [starInput, setStarInput] = useState("");
   const [stars, setStars] = useState([]);
+  const [modalIsVisible, setModalIsVisible] = useState(false);
 
   const starInputChangeHandler = (enteredText) => {
     setStarInput(enteredText);
@@ -18,6 +19,7 @@ export default function App() {
       { value: starInput, id: stars.length - 1 },
     ]);
     setStarInput("");
+    finishAddNewStarHandler();
   };
 
   const starItemPressHandler = (id) => {
@@ -26,12 +28,27 @@ export default function App() {
     });
   };
 
+  const startAddNewStarHandler = () => {
+    setModalIsVisible(true);
+  };
+
+  const finishAddNewStarHandler = () => {
+    setModalIsVisible(false);
+  };
+
   return (
     <View style={styles.container}>
+      <Button
+        title="Add New Star"
+        color="#f0b800"
+        onPress={startAddNewStarHandler}
+      />
       <StarInput
         value={starInput}
+        modalIsVisible={modalIsVisible}
         onInputChange={starInputChangeHandler}
         onButtonPress={addStarBtnPressHandler}
+        onCancel={finishAddNewStarHandler}
       />
       <View style={styles.starsContainer}>
         <StarList stars={stars} onItemPress={starItemPressHandler} />
