@@ -10,6 +10,7 @@ export default function App() {
   };
 
   const addStarBtnPressHandler = () => {
+    if (starInput.length === 0) return;
     setStars((currentStars) => [...currentStars, starInput]);
   };
 
@@ -21,11 +22,17 @@ export default function App() {
           placeholder="Add a name of the star"
           onChangeText={starInputChangeHandler}
         />
-        <Button title="Add star" onPress={addStarBtnPressHandler} />
+        <Button
+          title="Add star"
+          color="#f0b800"
+          onPress={addStarBtnPressHandler}
+        />
       </View>
       <View style={styles.starsContainer}>
         {stars.map((star, idx) => (
-          <Text key={idx}>{star}</Text>
+          <View style={styles.starsListItem} key={idx}>
+            <Text style={styles.starsListItemText}>{star}</Text>
+          </View>
         ))}
       </View>
     </View>
@@ -56,5 +63,15 @@ const styles = StyleSheet.create({
   },
   starsContainer: {
     flex: 5,
+  },
+  starsListItem: {
+    backgroundColor: "#ff8c00",
+    margin: 3,
+    padding: 10,
+    borderRadius: 10,
+  },
+  starsListItemText: {
+    color: "#ffffff",
+    fontWeight: "600",
   },
 });
